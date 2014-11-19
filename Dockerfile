@@ -12,10 +12,7 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EEA14886
 RUN apt-get update
 
 RUN echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | debconf-set-selections
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --force-yes --no-install-recommends oracle-java8-installer
-
-## CLEANUP
-RUN apt-get clean all
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --force-yes --no-install-recommends oracle-java8-installer && apt-get clean all
 
 ## JAVA_HOME
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
